@@ -61,7 +61,7 @@ class EffortLogsController < ApplicationController
         effort_log = EffortLog.find(:first, :conditions => ["person_id = ? and week_number = ? and year = ?", person.id, week_number, year])
         if(!person.emailed_recently)
           if((effort_log.nil? || effort_log.sum == 0)&&(!person.emailed_recently))
-  #            logger.debug "**  sent email to #{person.human_name} (#{person.id}) for #{week_number} of #{year} in course #{course_id}"
+            logger.debug "**  sent email to #{person.human_name} (#{person.id}) for #{week_number} of #{year} in course #{course_id}"
             create_midweek_warning_email_send_it(random_scotty_saying, person.id)
             @people_without_effort << person.human_name
           else
